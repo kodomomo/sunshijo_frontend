@@ -1,18 +1,20 @@
 import React from "react";
-import Timetable from "../components/Main/Timetable";
+import TimetableSection from "../components/Main/Timetable/TimetableSection";
+import TeacherListSection from "../components/Main/TeacherList/TeacherListSection";
 import styled from "styled-components";
 
 const Main = () => {
   return (
     <_Wrapper>
-      <Timetable />
+      <TimetableSection />
+      <TeacherListSection />
     </_Wrapper>
   );
 };
 
 const _Wrapper = styled.div`
   width: 100vw;
-  height: 100%;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;

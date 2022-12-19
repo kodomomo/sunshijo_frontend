@@ -1,19 +1,21 @@
 import React from "react";
+import Timetable from "./Timetable";
 import Dropdown from "./Dropdown";
 import styled from "styled-components";
 
-const Timetable = () => {
+const TimetableSection = () => {
   return (
-    <_TimetableLayout>
+    <_Wrapper>
       <_DropdownLayout>
         <Dropdown />
         <Dropdown />
       </_DropdownLayout>
-    </_TimetableLayout>
+      <Timetable />
+    </_Wrapper>
   );
 };
 
-const _TimetableLayout = styled.div`
+const _Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -26,4 +28,4 @@ const _DropdownLayout = styled.div`
   gap: 10px;
 `;
 
-export default Timetable;
+export default TimetableSection;
