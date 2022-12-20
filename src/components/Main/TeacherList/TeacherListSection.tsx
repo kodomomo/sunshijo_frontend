@@ -6,10 +6,24 @@ const TeacherListSection = () => {
   return (
     <_Wrapper>
       <TeacherFunction />
-      <TeacherList />
+      <_TeacherListBox>
+        <TeacherList />
+      </_TeacherListBox>
     </_Wrapper>
   );
 };
+
+const _TeacherListBox = styled.div`
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 700px;
+  height: 600px;
+  background: #ffffff;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+`;
 
 const _Wrapper = styled.div`
   display: flex;

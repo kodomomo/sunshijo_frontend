@@ -3,31 +3,20 @@ import styled from "styled-components";
 const TeacherList = () => {
   return (
     <_Wrapper>
-      <_Teacher>
-        <_TextLayout>
-          <h1>손지원</h1>
-          <div />
-          <h2>수학</h2>
-        </_TextLayout>
-        <_TeacherWorkspace>본부교무실</_TeacherWorkspace>
-      </_Teacher>
+      <_RadioButton isCheck={true}>
+        <div />
+      </_RadioButton>
+      <_TextLayout>
+        <h1>손지원</h1>
+        <div />
+        <h2>수학</h2>
+      </_TextLayout>
+      <_TeacherWorkspace>본부교무실</_TeacherWorkspace>
     </_Wrapper>
   );
 };
 
 const _Wrapper = styled.div`
-  overflow-y: scroll;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 700px;
-  height: 600px;
-  background: #ffffff;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
-  border-radius: 10px;
-`;
-
-const _Teacher = styled.div`
   transition: all 0.3s;
   cursor: pointer;
   position: relative;
@@ -41,6 +30,31 @@ const _Teacher = styled.div`
 
   &:hover {
     background: #f5f5f5;
+  }
+`;
+
+interface radioButtonProps {
+  isCheck: boolean;
+}
+
+const _RadioButton = styled.div<radioButtonProps>`
+  position: absolute;
+  left: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 100px;
+  border: ${(props) =>
+    props.isCheck ? "2px #242424 solid" : "2px #818181 solid"};
+
+  div {
+    opacity: ${(props) => (props.isCheck ? 1 : 0)};
+    width: 14px;
+    height: 14px;
+    border-radius: 50px;
+    background-color: #242424;
   }
 `;
 
