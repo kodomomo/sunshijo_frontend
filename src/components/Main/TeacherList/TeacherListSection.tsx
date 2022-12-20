@@ -16,6 +16,7 @@ const _Wrapper = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 20px;
+  margin-right: 50px;
 `;
 
 export default TeacherListSection;

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import RequestList from "./RequestList";
 import Notification from "../../../assets/svgs/Notification.svg";
 
 const TeacherFunction = () => {
@@ -9,8 +10,9 @@ const TeacherFunction = () => {
         <_Button background="#FED267">시간표 변경</_Button>
       </_ButtonBox>
       <_Notification>
-        <div />
+        <span />
         <img src={Notification} />
+        <RequestList />
       </_Notification>
     </_Wrapper>
   );
@@ -47,6 +49,10 @@ const _Button = styled.button<ButtonProps>`
 `;
 
 const _Notification = styled.button`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   position: relative;
   width: 38px;
@@ -56,7 +62,7 @@ const _Notification = styled.button`
   border-radius: 100px;
   border: none;
 
-  div {
+  span {
     position: absolute;
     width: 10px;
     height: 10px;
