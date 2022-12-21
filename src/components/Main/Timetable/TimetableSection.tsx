@@ -1,4 +1,5 @@
 import React from "react";
+import { gradeList, classList } from "./constant";
 import Timetable from "./Timetable";
 import Dropdown from "./Dropdown";
 import styled from "styled-components";
@@ -7,8 +8,8 @@ const TimetableSection = () => {
   return (
     <_Wrapper>
       <_DropdownLayout>
-        <Dropdown />
-        <Dropdown />
+        <Dropdown list={gradeList} />
+        <Dropdown list={classList} />
       </_DropdownLayout>
       <Timetable />
     </_Wrapper>

@@ -1,15 +1,18 @@
-import React from "react";
+import useDropdown from "../../../hooks/useDropdown";
 import Arrow from "../../../assets/svgs/Arrow";
 import styled from "styled-components";
 
-const Dropdown = () => {
+interface propsType {
+  list: string[];
+}
+
+const Dropdown = ({ list }: propsType) => {
+  const { isShow, menuMap, select, setIsShow } = useDropdown(list);
   return (
-    <_Dropdown>
-      <span>1학년</span>
-      <Arrow direction={false} />
-      <_MenuBox>
-        <div>1학년</div>
-      </_MenuBox>
+    <_Dropdown onClick={() => setIsShow(!isShow)}>
+      <span>{select}</span>
+      <Arrow isShow={isShow} />
+      {isShow && <_MenuBox>{menuMap}</_MenuBox>}
     </_Dropdown>
   );
 };

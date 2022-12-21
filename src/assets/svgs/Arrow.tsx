@@ -1,9 +1,9 @@
 interface propsType {
-  direction: boolean;
+  isShow: boolean;
 }
 
-const Arrow = ({ direction }: propsType) => {
-  return direction ? (
+const Arrow = ({ isShow }: propsType) => {
+  return isShow ? (
     <svg
       width="24"
       height="24"
