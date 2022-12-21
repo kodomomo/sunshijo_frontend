@@ -7,9 +7,9 @@ interface propsType {
 }
 
 const Dropdown = ({ list }: propsType) => {
-  const { isShow, menuMap, select, setIsShow } = useDropdown(list);
+  const { isShow, menuMap, select, changeShow } = useDropdown(list);
   return (
-    <_Dropdown onClick={() => setIsShow(!isShow)}>
+    <_Dropdown onClick={changeShow}>
       <span>{select}</span>
       <Arrow isShow={isShow} />
       {isShow && <_MenuBox>{menuMap}</_MenuBox>}
