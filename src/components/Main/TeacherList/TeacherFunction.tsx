@@ -1,18 +1,22 @@
+import { useState } from "react";
+import useShow from "../../../hooks/useShow";
 import styled from "styled-components";
 import RequestList from "./RequestList";
 import Notification from "../../../assets/svgs/Notification.svg";
 
 const TeacherFunction = () => {
+  const { isShow, changeShow } = useShow();
+
   return (
     <_Wrapper>
       <_ButtonBox>
         <_Button background="#242424">수행평가 등록</_Button>
         <_Button background="#FED267">시간표 변경</_Button>
       </_ButtonBox>
-      <_Notification>
+      <_Notification onClick={changeShow}>
         <span />
         <img src={Notification} />
-        <RequestList />
+        {isShow && <RequestList />}
       </_Notification>
     </_Wrapper>
   );
