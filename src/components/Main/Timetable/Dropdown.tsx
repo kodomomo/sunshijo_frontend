@@ -1,16 +1,25 @@
+import { useEffect } from "react";
+import { constantType } from "../../../interfaces/timetable";
 import useDropdown from "../../../hooks/useDropdown";
 import Arrow from "../../../assets/svgs/Arrow";
 import styled from "styled-components";
 
 interface propsType {
-  list: string[];
+  list: constantType[];
+  id: string;
+  onChange: (state: string) => void;
 }
 
-const Dropdown = ({ list }: propsType) => {
+const Dropdown = ({ list, id, onChange }: propsType) => {
   const { isShow, menuMap, select, changeShow } = useDropdown(list);
+
+  useEffect(() => {
+    onChange(select);
+  }, [select]);
+
   return (
     <_Dropdown onClick={changeShow}>
-      <span>{select}</span>
+      <span>{select + id}</span>
       <Arrow isShow={isShow} />
       {isShow && <_MenuBox>{menuMap}</_MenuBox>}
     </_Dropdown>

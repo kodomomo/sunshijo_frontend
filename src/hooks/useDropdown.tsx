@@ -1,14 +1,15 @@
 import { useState } from "react";
+import { constantType } from "../interfaces/timetable";
 import useShow from "./useShow";
 
-const useDropdown = (menu: string[]) => {
-  const [select, setSelect] = useState<string>(menu[0]);
+const useDropdown = (menu: constantType[]) => {
+  const [select, setSelect] = useState<string>(menu[0].number);
   const { isShow, changeShow } = useShow();
 
-  const menuMap = menu.map((item: string, index: number) => {
+  const menuMap = menu.map((item: constantType, index: number) => {
     return (
-      <div key={index} onClick={() => setSelect(item)}>
-        {item}
+      <div key={index} onClick={() => setSelect(item.number)}>
+        {item.text}
       </div>
     );
   });
