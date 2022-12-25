@@ -1,17 +1,29 @@
+import { Dispatch, SetStateAction } from "react";
 import styled from "styled-components";
+import { teacherType } from "../../../interfaces/teacherList";
 
-const TeacherList = () => {
+interface propsType {
+  checkTeacher: string;
+  setCheckTeacher: Dispatch<SetStateAction<string>>;
+  item: teacherType;
+}
+
+const TeacherList = ({ item, checkTeacher, setCheckTeacher }: propsType) => {
+  const changeCheckTeacher = () => {
+    setCheckTeacher(item.name);
+  };
+
   return (
-    <_Wrapper>
-      <_RadioButton isCheck={true}>
+    <_Wrapper onClick={changeCheckTeacher}>
+      <_RadioButton isCheck={checkTeacher == item.name}>
         <div />
       </_RadioButton>
       <_TextLayout>
-        <h1>손지원</h1>
+        <h1>{item.name}</h1>
         <div />
-        <h2>수학</h2>
+        <h2>{item.subject}</h2>
       </_TextLayout>
-      <_TeacherWorkspace>본부교무실</_TeacherWorkspace>
+      <_TeacherWorkspace>{item.work_place}</_TeacherWorkspace>
     </_Wrapper>
   );
 };

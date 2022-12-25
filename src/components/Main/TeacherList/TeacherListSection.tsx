@@ -1,14 +1,32 @@
-
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import TeacherFunction from "./TeacherFunction";
 import TeacherList from "./TeacherList";
+import getTeacherList from "../../../apis/getTeacherList";
+import { teacherType } from "../../../interfaces/teacherList";
 
 const TeacherListSection = () => {
+  const [checkTeacher, setCheckTeacher] = useState<string>("");
+  const [list, setList] = useState<teacherType[]>([]);
+
+  useEffect(() => {
+    getTeacherList().then((res) => {});
+  }, []);
+
   return (
     <_Wrapper>
       <TeacherFunction />
       <_TeacherListBox>
-        <TeacherList />
+        {list.map((item, index) => {
+          return (
+            <TeacherList
+              item={item}
+              key={index}
+              setCheckTeacher={setCheckTeacher}
+              checkTeacher={checkTeacher}
+            />
+          );
+        })}
       </_TeacherListBox>
     </_Wrapper>
   );
