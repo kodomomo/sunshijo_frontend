@@ -1,8 +1,9 @@
 import { useState } from "react";
 import useShow from "../../../hooks/useShow";
 import styled from "styled-components";
-import RequestList from "./RequestList";
+import List from "./List";
 import Notification from "../../../assets/svgs/Notification.svg";
+import Triangle from "../../../assets/svgs/Triangle.svg";
 
 const TeacherFunction = () => {
   const { isShow, changeShow } = useShow();
@@ -16,7 +17,14 @@ const TeacherFunction = () => {
       <_Notification onClick={changeShow}>
         <span />
         <img src={Notification} />
-        {isShow && <RequestList />}
+        {isShow && (
+          <_RequestList>
+            <img src={Triangle} />
+            <_ListBox>
+              <List /> <List /> <List /> <List />
+            </_ListBox>
+          </_RequestList>
+        )}
       </_Notification>
     </_Wrapper>
   );
@@ -74,6 +82,34 @@ const _Notification = styled.button`
     top: 0px;
     background: #ff2c2c;
     border-radius: 10px;
+  }
+`;
+
+const _RequestList = styled.div`
+  z-index: 2;
+  position: absolute;
+  top: 43px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: -2px;
+
+  img {
+    z-index: 1;
+  }
+`;
+
+const _ListBox = styled.div`
+  cursor: default;
+  width: 450px;
+  height: 400px;
+  background: #ffffff;
+  box-shadow: 0px -4px 10px rgba(81, 81, 81, 0.25);
+  border-radius: 10px;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
   }
 `;
 
