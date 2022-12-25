@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { gradeList, classList } from "./constant";
 import useToDay from "../../../hooks/useToDay";
 import getTimetable from "../../../apis/getTimetable";
@@ -16,15 +16,27 @@ const TimetableSection = () => {
     endAt: toDayPlusFive,
   });
 
-  const onClickGetTimetable = () => {
+  useEffect(() => {
     getTimetable(getParams);
-  };
+  }, []);
+
+  useEffect(() => {
+    getTimetable(getParams);
+  }, [getParams]);
 
   return (
     <_Wrapper>
       <_DropdownLayout>
-        <Dropdown list={gradeList} id="학년" onChange={onClickGetTimetable} />
-        <Dropdown list={classList} id="반" onChange={onClickGetTimetable} />
+        <Dropdown
+          list={gradeList}
+          id="학년"
+          onChange={(state) => setGetParams({ ...getParams, grade: state })}
+        />
+        <Dropdown
+          list={classList}
+          id="반"
+          onChange={(state) => setGetParams({ ...getParams, class_num: state })}
+        />
       </_DropdownLayout>
       <Timetable />
     </_Wrapper>
