@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { changeTimetableType } from "../../../interfaces/timetable";
 import useShow from "../../../hooks/useShow";
 import styled from "styled-components";
 import List from "./List";
@@ -6,6 +7,7 @@ import Notification from "../../../assets/svgs/Notification.svg";
 import Triangle from "../../../assets/svgs/Triangle.svg";
 
 const TeacherFunction = () => {
+  const [requestList, setRequestList] = useState<changeTimetableType[]>([]);
   const { isShow, changeShow } = useShow();
 
   return (
@@ -21,7 +23,13 @@ const TeacherFunction = () => {
           <_RequestList>
             <img src={Triangle} />
             <_ListBox>
-              <List /> <List /> <List /> <List />
+              {requestList.length == 0 ? (
+                <_NoRequest>요청이 없습니다</_NoRequest>
+              ) : (
+                requestList.map((item, index) => {
+                  return <List item={item} key={index} />;
+                })
+              )}
             </_ListBox>
           </_RequestList>
         )}
@@ -111,6 +119,17 @@ const _ListBox = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
+`;
+
+const _NoRequest = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-weight: 600;
+  font-size: 20px;
+  color: #686868;
 `;
 
 export default TeacherFunction;

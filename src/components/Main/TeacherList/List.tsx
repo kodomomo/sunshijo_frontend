@@ -1,13 +1,36 @@
 import styled from "styled-components";
 import Change from "../../../assets/svgs/Change.svg";
+import { changeTimetableType } from "../../../interfaces/timetable";
 
-const List = () => {
+interface propsType {
+  item: changeTimetableType;
+}
+
+const List = ({ item }: propsType) => {
+  const {
+    name,
+    new_class,
+    new_day,
+    new_gradations,
+    new_grade,
+    new_name,
+    origin_class,
+    origin_day,
+    origin_gradations,
+    origin_grade,
+    origin_name,
+    record_id,
+  } = item;
+
+  const originText = `${origin_day} ${origin_grade}학년 ${origin_class}반 ${origin_gradations}교시 ${origin_name}`;
+  const newText = `${new_day} ${new_grade}학년 ${new_class}반 ${new_gradations}교시 ${new_name}`;
+
   return (
     <_Wrapper>
-      <h3>손지원 선생님께서 시간표 변경을 요청하셨습니다</h3>
-      <p>2022-12-19 (월) 1교시 수학</p>
+      <h3>{item.name} 선생님께서 시간표 변경을 요청하셨습니다</h3>
+      <p>{originText}</p>
       <img src={Change} />
-      <p>2022-12-21 (수) 5교시 운동과 건강</p>
+      <p>{newText}</p>
       <_ButtonLayout>
         <_Button background="#FED267">수락</_Button>
         <_Button background="#242424">취소</_Button>
