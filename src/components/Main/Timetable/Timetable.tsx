@@ -1,8 +1,13 @@
 import React from "react";
 import TimetableArrow from "../../../assets/svgs/TimetableArrow";
+import { timetableType } from "../../../interfaces/timetable";
 import styled from "styled-components";
 
-const Timetable = () => {
+interface propsType {
+  timetable: timetableType;
+}
+
+const Timetable = ({ timetable }: propsType) => {
   return (
     <_Wrapper>
       <_TitleLayout>

@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 import { gradeList, classList } from "./constant";
 import useToDay from "../../../hooks/useToDay";
 import getTimetable from "../../../apis/getTimetable";
-import { getParamsType } from "../../../interfaces/timetable";
+import { getParamsType, timetableType } from "../../../interfaces/timetable";
 import Timetable from "./Timetable";
 import Dropdown from "./Dropdown";
 import styled from "styled-components";
 
 const TimetableSection = () => {
   const { toDay, toDayPlusFive } = useToDay();
+  const [timetable, setTimetable] = useState<timetableType>({});
   const [getParams, setGetParams] = useState<getParamsType>({
     grade: "1",
     class_num: "1",
@@ -16,6 +17,7 @@ const TimetableSection = () => {
     endAt: toDayPlusFive,
   });
 
+  //Object.keys(strObj).map(item => strObj[item])
   useEffect(() => {
     getTimetable(getParams);
   }, []);
@@ -38,7 +40,7 @@ const TimetableSection = () => {
           onChange={(state) => setGetParams({ ...getParams, class_num: state })}
         />
       </_DropdownLayout>
-      <Timetable />
+      <Timetable timetable={timetable} />
     </_Wrapper>
   );
 };

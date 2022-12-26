@@ -24,3 +24,20 @@ export interface changeTimetableType {
   new_name: string;
   name: string;
 }
+
+export interface periodType {
+  grade: string;
+  class_num: string;
+  name: string;
+  gradations: string;
+  day_at: string;
+  week_of_day: string;
+}
+
+export interface timetableType {
+  0?: periodType[];
+  1?: periodType[];
+  2?: periodType[];
+  3?: periodType[];
+  4?: periodType[];
+}
