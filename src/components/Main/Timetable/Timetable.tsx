@@ -11,9 +11,76 @@ const Timetable = () => {
         <TimetableArrow direction="right" />
       </_TitleLayout>
       <_IntroduceText>
-        (검정) : 변경을 하려는 과목{" "}
-        <span>(노랑)</span> : 변경을 원하는 과목
+        (검정) : 변경을 하려는 과목 <span>(노랑)</span> : 변경을 원하는 과목
       </_IntroduceText>
+      <table>
+        <_NumberTh></_NumberTh>
+        <_Th>월</_Th>
+        <_Th>화</_Th>
+        <_Th>수</_Th>
+        <_Th>목</_Th>
+        <_Th>금</_Th>
+        <tr>
+          <_NumberTd>1</_NumberTd>
+          <_Td>국어</_Td>
+          <_Td>국어</_Td>
+          <_Td>국어</_Td>
+          <_Td>국어</_Td>
+          <_Td>국어</_Td>
+        </tr>
+        <tr>
+          <_NumberTd>2</_NumberTd>
+          <_Td>국어</_Td>
+          <_Td>국어</_Td>
+          <_Td>국어</_Td>
+          <_Td>국어</_Td>
+          <_Td>국어</_Td>
+        </tr>
+        <tr>
+          <_NumberTd>3</_NumberTd>
+          <_Td>국어</_Td>
+          <_Td>국어</_Td>
+          <_Td>국어</_Td>
+          <_Td>국어</_Td>
+          <_Td>국어</_Td>
+        </tr>
+        <tr>
+          <_NumberTd>4</_NumberTd>
+          <_Td>국어</_Td>
+          <_Td>국어</_Td>
+          <_Td>국어</_Td>
+          <_Td>국어</_Td>
+          <_Td>국어</_Td>
+        </tr>
+        <tr>
+          <_NumberTd>{""}</_NumberTd>
+          <_LunchTd colSpan={5}>점심시간</_LunchTd>
+        </tr>
+        <tr>
+          <_NumberTd>5</_NumberTd>
+          <_Td>국어</_Td>
+          <_Td>국어</_Td>
+          <_Td>국어</_Td>
+          <_Td>국어</_Td>
+          <_Td>국어</_Td>
+        </tr>
+        <tr>
+          <_NumberTd>6</_NumberTd>
+          <_Td>국어</_Td>
+          <_Td>국어</_Td>
+          <_Td>국어</_Td>
+          <_Td>국어</_Td>
+          <_Td>국어</_Td>
+        </tr>
+        <tr>
+          <_NumberTd>7</_NumberTd>
+          <_Td>국어</_Td>
+          <_Td>국어</_Td>
+          <_Td>국어</_Td>
+          <_Td>국어</_Td>
+          <_Td>국어</_Td>
+        </tr>
+      </table>
     </_Wrapper>
   );
 };
@@ -51,6 +118,54 @@ const _IntroduceText = styled.p`
   span {
     color: #fed267;
   }
+`;
+
+const _Th = styled.th`
+  width: 70px;
+  line-height: 50px;
+  font-weight: 600;
+  font-size: 20px;
+  background-color: #ffffff;
+  color: #7b7b7b;
+`;
+
+const _Td = styled.td`
+  cursor: pointer;
+  transition: all 0.3s;
+  width: 68px;
+  height: 48px;
+  background: #ffffff;
+  border: 1px solid #e7e7e7;
+  font-weight: 500;
+  font-size: 18px;
+  color: #242424;
+
+  &:hover {
+    background-color: #f5f5f5;
+  }
+`;
+
+const _NumberTh = styled.th`
+  width: 30px;
+  height: 50px;
+`;
+
+const _NumberTd = styled.td`
+  width: 30px;
+  height: 50px;
+  font-weight: 400;
+  font-size: 18px;
+  color: #7b7b7b;
+`;
+
+const _LunchTd = styled.td`
+  width: 350px;
+  height: 50px;
+  background: #fed267;
+  border-color: #e7e7e7;
+  font-weight: 600;
+  font-size: 20px;
+  color: #ffffff;
 `;
 
 export default Timetable;
