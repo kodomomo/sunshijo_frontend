@@ -17,7 +17,7 @@ const TeacherFunction = () => {
         <_Button background="#FED267">시간표 변경</_Button>
       </_ButtonBox>
       <_Notification onClick={changeShow}>
-        <span />
+        {requestList.length == 0 || <span />}
         <img src={Notification} />
         {isShow && (
           <_RequestList>

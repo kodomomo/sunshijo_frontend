@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Change from "../../../assets/svgs/Change.svg";
+import postRecord from "../../../apis/postRecord";
 import { changeTimetableType } from "../../../interfaces/timetable";
 
 interface propsType {
@@ -25,15 +26,26 @@ const List = ({ item }: propsType) => {
   const originText = `${origin_day} ${origin_grade}학년 ${origin_class}반 ${origin_gradations}교시 ${origin_name}`;
   const newText = `${new_day} ${new_grade}학년 ${new_class}반 ${new_gradations}교시 ${new_name}`;
 
+  const onClickPostRecord = (result: boolean) => {
+    postRecord({
+      record_id: record_id,
+      react: result,
+    });
+  };
+
   return (
     <_Wrapper>
-      <h3>{item.name} 선생님께서 시간표 변경을 요청하셨습니다</h3>
+      <h3>{name} 선생님께서 시간표 변경을 요청하셨습니다</h3>
       <p>{originText}</p>
       <img src={Change} />
       <p>{newText}</p>
       <_ButtonLayout>
-        <_Button background="#FED267">수락</_Button>
-        <_Button background="#242424">취소</_Button>
+        <_Button background="#FED267" onClick={() => onClickPostRecord(true)}>
+          수락
+        </_Button>
+        <_Button background="#242424" onClick={() => onClickPostRecord(false)}>
+          취소
+        </_Button>
       </_ButtonLayout>
     </_Wrapper>
   );
