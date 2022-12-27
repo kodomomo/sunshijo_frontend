@@ -1,14 +1,56 @@
+//import { instance } from "../apis/axios";
 import axios from "axios";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import LoginImg from "../assets/imgs/Login.png";
+import { useNavigate } from "react-router-dom";
+// import { useDispatch } from "react-redux";
 
 const LoginPage = () => {
-  /*axios({
-    url: "43.201.53.240:8000"+"/teachers/auth",
-    method: "POST"
-  })*/
+  // const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [id, setId] = useState<string>("");
+  const [pwd, setPwd] = useState<string>("");
+  // e.preventDefault();
+
+  const onLogin = () => {
+    console.log(id, pwd);
+    if (!id) {
+      return alert("ID를 입력하세요.");
+    } else if (!pwd) {
+      return alert("Password를 입력하세요.");
+    } else {
+      axios
+        .post("https://500c-211-36-142-170.jp.ngrok.io/teacher/auth", {
+          account_id: id,
+          password: pwd,
+        })
+        .then(function (res) {
+          console.log(res.data);
+          const { access_token, refresh_token } = res.data;
+          axios.defaults.headers.common[
+            "Authorization"
+          ] = `Bearer ${access_token}`;
+          sessionStorage.setItem("accessToken", access_token);
+          sessionStorage.setItem("refreshToken", refresh_token);
+          navigate("/main");
+        })
+        .catch(function (err) {
+          console.log(err);
+        });
+    }
+  };
+
+  const onClickLoginBtn = () => {
+    console.log(id);
+    console.log(pwd);
+    onLogin();
+    setId("");
+    setPwd("");
+  };
+
   return (
     <PageBackground>
       <MainDiv>
@@ -17,17 +59,35 @@ const LoginPage = () => {
             <h2>LOGIN</h2>
             <hr />
             <InputContainer>
-              <InputDiv>
-                <p>아이디</p>
-                <input placeholder="아이디를 입력해주세요" />
-              </InputDiv>
-              <InputDiv>
-                <p>비밀번호</p>
-                <input placeholder="비밀번호를 입력해주세요" />
-              </InputDiv>
+              <form>
+                <InputDiv>
+                  <p>아이디</p>
+                  <input
+                    type="text"
+                    id="id"
+                    value={id}
+                    onChange={(e) => {
+                      setId(e.target.value);
+                    }}
+                    placeholder="아이디를 입력해주세요"
+                  />
+                </InputDiv>
+                <InputDiv>
+                  <p>비밀번호</p>
+                  <input
+                    value={pwd}
+                    onChange={(e) => {
+                      setPwd(e.target.value);
+                    }}
+                    placeholder="비밀번호를 입력해주세요"
+                    type="password"
+                  />
+                </InputDiv>
+              </form>
             </InputContainer>
+
             <Link to="/signUp">회원가입으로 이동</Link>
-            <button>로그인</button>
+            <button onClick={() => onClickLoginBtn()}>로그인</button>
           </LoginDiv>
           <ImgDiv>
             <img src={LoginImg} alt="" />
@@ -37,6 +97,9 @@ const LoginPage = () => {
     </PageBackground>
   );
 };
+
+export default LoginPage;
+
 const InputContainer = styled.div`
   padding-bottom: 15px;
 `;
@@ -132,6 +195,8 @@ const InputDiv = styled.div`
     width: 320px;
     height: 42px;
     text-indent: 15px;
+    border-radius: 5px;
+    border: 1px solid #9e9e9e;
   }
 `;
 const ImgDiv = styled.div`
@@ -140,5 +205,3 @@ const ImgDiv = styled.div`
     height: 350px;
   }
 `;
-
-export default LoginPage;

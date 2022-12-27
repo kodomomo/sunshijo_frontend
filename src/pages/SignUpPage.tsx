@@ -1,20 +1,74 @@
-import axios from "axios";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import SignUpImg from "../assets/imgs/Sign-Up.png";
+//import { instance } from "../apis/axios";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+
+import axios from "axios";
 
 const SignUpPage = () => {
-  /*axios({
-    url: "43.201.53.240:8000" + "/teachers/register",
-    method: "POST",
-  });*/
-  const personalData: string[] = ["아이디", "비밀번호", "이름"];
-  const personalDataList = personalData.map((list) => (
+  const navigate = useNavigate();
+  const [id, setId] = useState("");
+  const [name, setName] = useState("");
+  const [pwd, setPwd] = useState("");
+  const [workPlace, setWorkPlace] = useState("");
+  const [subject, setSubject] = useState("");
+  const [authCode, setAuthCode] = useState("");
+
+  const onSignUp = () => {
+    console.log(id, pwd, name, authCode, workPlace, subject);
+    if (!id || !pwd || !name || !authCode || !workPlace || !subject) {
+      alert("내용을 모두 기재해주세요!");
+    } else {
+      axios
+        .post("https://500c-211-36-142-170.jp.ngrok.io/teacher/register", {
+          account_id: id,
+          password: pwd,
+          name: name,
+          auth_code: authCode,
+          work_place: workPlace,
+          subject: subject,
+        })
+        .then((res) => {
+          setId("");
+          setPwd("");
+          setName("");
+          setWorkPlace("");
+          setSubject("");
+          setAuthCode("");
+          navigate("/login");
+        });
+    }
+  };
+
+  const personalData: string[] = ["아이디", "비밀번호", "이름", "선생님 코드"];
+  const inputType: string[] = ["text", "password", "text", "text"];
+  const inputValue: string[] = [id, pwd, name, authCode];
+  const inputOnChage: ((value: string) => void)[] = [
+    setId,
+    setPwd,
+    setName,
+    setAuthCode,
+  ];
+
+  const personalDataList = personalData.map((list, index) => (
     <InputDiv>
       <p>{list}</p>
-      <input placeholder={list + "를 입력해주세요"} />
+      <input
+        type={inputType[index]}
+        value={inputValue[index]}
+        onChange={(e) => {
+          console.log("asd");
+          inputOnChage[index](e.target.value);
+        }}
+        placeholder={list + "를 입력해주세요"}
+      />
     </InputDiv>
   ));
+  const onClickSignUp = () => {
+    onSignUp();
+  };
   return (
     <>
       <PageBackground>
@@ -27,18 +81,30 @@ const SignUpPage = () => {
                 {personalDataList}
                 <SelectDiv>
                   <p>집무실</p>
-                  <select>
+                  <select onChange={(e) => setWorkPlace(e.target.value)}>
                     <option>집무실을 선택해주세요</option>
+                    <option>본부교무실</option>
+                    <option>2교무실</option>
+                    <option>3교무실</option>
+                    <option>4교무실</option>
+                    <option>산학협력부</option>
                   </select>
                 </SelectDiv>
                 <InputDiv>
                   <p>담당과목</p>
-                  <input placeholder="담당과목을 입력해주세요" />
+                  <input
+                    value={subject}
+                    type="text"
+                    onChange={(e) => {
+                      setSubject(e.target.value);
+                    }}
+                    placeholder="담당과목을 입력해주세요"
+                  />
                 </InputDiv>
               </InputContainer>
               <Link to="/login">로그인으로 이동</Link>
               <LoginBtn>
-                <button type="submit">로그인</button>
+                <button onClick={() => onClickSignUp()}>회원가입</button>
               </LoginBtn>
             </SignUpDiv>
             <ImgDiv>
@@ -75,6 +141,8 @@ const SelectDiv = styled.div`
     font-weight: 500;
     font-size: 16px;
     line-height: 19px;
+    border-radius: 5px;
+    border: 1px solid #9e9e9e;
   }
 `;
 const LoginBtn = styled.div`
@@ -114,6 +182,8 @@ const InputDiv = styled.div`
     font-weight: 500;
     font-size: 16px;
     line-height: 19px;
+    border-radius: 5px;
+    border: 1px solid #9e9e9e;
   }
 `;
 const PageBackground = styled.div`
@@ -138,7 +208,6 @@ const SubDiv = styled.div`
 `;
 const SignUpDiv = styled.div`
   width: 320px;
-  height: 659px;
   text-align: left;
   h2 {
     font-family: "Pretendard";
