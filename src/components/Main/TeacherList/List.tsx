@@ -5,9 +5,10 @@ import { changeTimetableType } from "../../../interfaces/timetable";
 
 interface propsType {
   item: changeTimetableType;
+  filterList: (item: changeTimetableType) => void;
 }
 
-const List = ({ item }: propsType) => {
+const List = ({ item, filterList }: propsType) => {
   const {
     name,
     new_class,
@@ -30,6 +31,8 @@ const List = ({ item }: propsType) => {
     putRecord({
       record_id: record_id,
       react: result,
+    }).then((res) => {
+      filterList(item);
     });
   };
 

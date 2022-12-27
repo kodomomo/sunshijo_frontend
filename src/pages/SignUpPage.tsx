@@ -22,7 +22,7 @@ const SignUpPage = () => {
       alert("내용을 모두 기재해주세요!");
     } else {
       axios
-        .post("https://7ca5-183-107-19-69.jp.ngrok.io/teacher/register", {
+        .post("https://b873-211-36-142-242.jp.ngrok.io/teacher/register", {
           account_id: id,
           password: pwd,
           name: name,
@@ -59,7 +59,6 @@ const SignUpPage = () => {
         type={inputType[index]}
         value={inputValue[index]}
         onChange={(e) => {
-          console.log("asd");
           inputOnChage[index](e.target.value);
         }}
         placeholder={list + "를 입력해주세요"}

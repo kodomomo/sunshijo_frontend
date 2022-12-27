@@ -15,10 +15,13 @@ const TeacherFunction = ({ recordsState }: any) => {
   const { isShow, changeShow } = useShow();
 
   const onClickPostRecords = () => {
-    console.log(recordsState);
     postRecords(recordsState).then((res) => {
       alert("변경요청하였습니다.");
     });
+  };
+
+  const filterList = (item: changeTimetableType) => {
+    setRequestList(requestList.filter((i) => i != item));
   };
 
   useEffect(() => {
@@ -50,7 +53,9 @@ const TeacherFunction = ({ recordsState }: any) => {
                   <_NoRequest>요청이 없습니다</_NoRequest>
                 ) : (
                   requestList.map((item, index) => {
-                    return <List item={item} key={index} />;
+                    return (
+                      <List filterList={filterList} item={item} key={index} />
+                    );
                   })
                 )}
               </_ListBox>
