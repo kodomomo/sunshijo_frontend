@@ -2,13 +2,13 @@ import { instance } from "./axios";
 
 interface queryString {
   grade: string;
-  class_num: string;
+  classNum: string;
   startAt: string;
   endAt: string;
 }
 
 const getTimetable = (params: queryString) => {
-  const response = instance.get("/schedules", { params: params });
+  const response = instance.get("/schedules/web", { params: params });
   return response;
 };
 
