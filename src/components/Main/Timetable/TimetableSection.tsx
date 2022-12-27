@@ -1,29 +1,51 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, Dispatch, SetStateAction } from "react";
 import { gradeList, classList } from "./constant";
 import useToDay from "../../../hooks/useToDay";
 import getTimetable from "../../../apis/getTimetable";
-import { getParamsType, timetableType } from "../../../interfaces/timetable";
+import {
+  getParamsType,
+  timetableType,
+  recordsType,
+} from "../../../interfaces/timetable";
 import Timetable from "./Timetable";
 import Dropdown from "./Dropdown";
 import styled from "styled-components";
 
-const TimetableSection = () => {
-  const { toDay, toDayPlusFive } = useToDay();
+interface propsType {
+  recordsState: recordsType;
+  setRecordsState: Dispatch<SetStateAction<recordsType>>;
+}
+
+const TimetableSection = ({ recordsState, setRecordsState }: propsType) => {
+  const [plusNum, setPlusNum] = useState<number>(0);
+  const { toDay, toDayPlusFive } = useToDay(plusNum);
   const [timetable, setTimetable] = useState<timetableType>({});
   const [getParams, setGetParams] = useState<getParamsType>({
     grade: "1",
-    class_num: "1",
+    classNum: "1",
     startAt: toDay,
     endAt: toDayPlusFive,
   });
 
-  //Object.keys(strObj).map(item => strObj[item])
   useEffect(() => {
-    getTimetable(getParams);
+    getTimetable(getParams).then((res) => {
+      setTimetable(res.data);
+    });
   }, []);
 
   useEffect(() => {
-    getTimetable(getParams);
+    setGetParams({
+      grade: getParams.grade,
+      classNum: getParams.classNum,
+      startAt: toDay,
+      endAt: toDayPlusFive,
+    });
+  }, [toDay]);
+
+  useEffect(() => {
+    getTimetable(getParams).then((res) => {
+      setTimetable(res.data);
+    });
   }, [getParams]);
 
   return (
@@ -37,10 +59,10 @@ const TimetableSection = () => {
         <Dropdown
           list={classList}
           id="반"
-          onChange={(state) => setGetParams({ ...getParams, class_num: state })}
+          onChange={(state) => setGetParams({ ...getParams, classNum: state })}
         />
       </_DropdownLayout>
-      <Timetable timetable={timetable} />
+      <Timetable timetable={timetable} setPlusNum={setPlusNum} recordsState={recordsState} setRecordsState={setRecordsState}/>
     </_Wrapper>
   );
 };
