@@ -192,7 +192,7 @@ const PageBackground = styled.div`
 `;
 const MainDiv = styled.div`
   height: 100%;
-  width: 1500px;
+  width: 77vw;
   background-color: #fff;
   box-shadow: 5px 0 15px rgba(0, 0, 0, 0.25);
   display: flex;
