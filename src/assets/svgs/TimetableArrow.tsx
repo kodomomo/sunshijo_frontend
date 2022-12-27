@@ -3,7 +3,7 @@ interface propsType {
 }
 
 const TimetableArrow = ({ direction }: propsType) => {
-  return direction == "left" ? (
+  return direction === "left" ? (
     <svg
       cursor="pointer"
       width="12"

@@ -23,7 +23,7 @@ const LoginPage = () => {
       return alert("Password를 입력하세요.");
     } else {
       axios
-        .post("http://52.79.76.204:8000/teacher/auth", {
+        .post("https://7ca5-183-107-19-69.jp.ngrok.io/teacher/auth", {
           account_id: id,
           password: pwd,
         })
@@ -33,8 +33,8 @@ const LoginPage = () => {
           axios.defaults.headers.common[
             "Authorization"
           ] = `Bearer ${access_token}`;
-          localStorage.setItem("access_Token", access_token);
-          localStorage.setItem("refresh_Token", refresh_token);
+          localStorage.setItem("access_token", access_token);
+          localStorage.setItem("refresh_token", refresh_token);
           navigate("/main");
         })
         .catch(function (err) {

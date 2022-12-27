@@ -22,7 +22,7 @@ const SignUpPage = () => {
       alert("내용을 모두 기재해주세요!");
     } else {
       axios
-        .post("http://52.79.76.204:8000/teacher/register", {
+        .post("https://7ca5-183-107-19-69.jp.ngrok.io/teacher/register", {
           account_id: id,
           password: pwd,
           name: name,
