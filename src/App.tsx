@@ -11,6 +11,8 @@ function App() {
       <GlobalStyle />
       <Routes>
         <Route path="/main" element={<Main />} />
+        <Route path="/signUp" element={<SignUpPage />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/records" element={<Records />} />
       </Routes>
     </div>
