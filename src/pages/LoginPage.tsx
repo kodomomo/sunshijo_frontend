@@ -23,7 +23,7 @@ const LoginPage = () => {
       return alert("Password를 입력하세요.");
     } else {
       axios
-        .post("https://500c-211-36-142-170.jp.ngrok.io/teacher/auth", {
+        .post("https://52.79.76.204:8000/teacher/auth", {
           account_id: id,
           password: pwd,
         })
