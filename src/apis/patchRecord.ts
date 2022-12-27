@@ -5,9 +5,9 @@ interface bodyType {
   react: boolean;
 }
 
-const postRecord = (body: bodyType) => {
-  const response = instance.put("/records", body);
+const patchRecord = (body: bodyType) => {
+  const response = instance.patch("/records", body);
   return response;
 };
 
-export default postRecord;
+export default patchRecord;

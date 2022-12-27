@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Change from "../../../assets/svgs/Change.svg";
-import putRecord from "../../../apis/putRecord";
+import patchRecord from "../../../apis/patchRecord";
 import { changeTimetableType } from "../../../interfaces/timetable";
 
 interface propsType {
@@ -28,7 +28,7 @@ const List = ({ item, filterList }: propsType) => {
   const newText = `${new_day} ${new_grade}학년 ${new_class}반 ${new_gradations}교시 ${new_name}`;
 
   const onClickPostRecord = (result: boolean) => {
-    putRecord({
+    patchRecord({
       record_id: record_id,
       react: result,
     }).then((res) => {
