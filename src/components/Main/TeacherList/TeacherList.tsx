@@ -10,12 +10,12 @@ interface propsType {
 
 const TeacherList = ({ item, checkTeacher, setCheckTeacher }: propsType) => {
   const changeCheckTeacher = () => {
-    setCheckTeacher(item.name);
+    setCheckTeacher(item.teacher_id);
   };
 
   return (
     <_Wrapper onClick={changeCheckTeacher}>
-      <_RadioButton isCheck={checkTeacher == item.name}>
+      <_RadioButton isCheck={checkTeacher == item.teacher_id}>
         <div />
       </_RadioButton>
       <_TextLayout>

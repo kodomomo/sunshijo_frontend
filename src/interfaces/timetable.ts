@@ -5,7 +5,7 @@ export interface constantType {
 
 export interface getParamsType {
   grade: string;
-  class_num: string;
+  classNum: string;
   startAt: string;
   endAt: string;
 }
@@ -35,9 +35,23 @@ export interface periodType {
 }
 
 export interface timetableType {
-  0?: periodType[];
-  1?: periodType[];
-  2?: periodType[];
-  3?: periodType[];
-  4?: periodType[];
+  mon?: periodType[];
+  tue?: periodType[];
+  wed?: periodType[];
+  thu?: periodType[];
+  fri?: periodType[];
+}
+
+export interface recordsType {
+  origin_grade: string;
+  origin_class: string;
+  origin_subject: string;
+  origin_date: string;
+  origin_gradations: string;
+  new_grade: string;
+  new_class: string;
+  new_date: string;
+  new_subject: string;
+  new_gradations: string;
+  new_teacher_id: string;
 }

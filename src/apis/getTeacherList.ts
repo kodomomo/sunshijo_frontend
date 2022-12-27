@@ -1,7 +1,7 @@
 import { instance } from "./axios";
 
 const getTeacherList = () => {
-  const response = instance.get("/teachers/list");
+  const response = instance.get("/teacher/list");
   return response;
 };
 

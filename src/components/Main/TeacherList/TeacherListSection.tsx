@@ -5,17 +5,23 @@ import TeacherList from "./TeacherList";
 import getTeacherList from "../../../apis/getTeacherList";
 import { teacherType } from "../../../interfaces/teacherList";
 
-const TeacherListSection = () => {
+const TeacherListSection = ({ recordsState, setRecordsState }: any) => {
   const [checkTeacher, setCheckTeacher] = useState<string>("");
   const [list, setList] = useState<teacherType[]>([]);
 
   useEffect(() => {
-    getTeacherList().then((res) => {});
+    getTeacherList().then((res) => {
+      setList(res.data);
+    });
   }, []);
+
+  useEffect(() => {
+    setRecordsState({ ...recordsState, new_teacher_id: checkTeacher });
+  }, [checkTeacher]);
 
   return (
     <_Wrapper>
-      <TeacherFunction />
+      <TeacherFunction recordsState={recordsState}/>
       <_TeacherListBox>
         {list.map((item, index) => {
           return (
