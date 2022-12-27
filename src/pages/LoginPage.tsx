@@ -23,7 +23,7 @@ const LoginPage = () => {
       return alert("Password를 입력하세요.");
     } else {
       axios
-        .post("https://52.79.76.204:8000/teacher/auth", {
+        .post("http://52.79.76.204:8000/teacher/auth", {
           account_id: id,
           password: pwd,
         })
@@ -33,8 +33,8 @@ const LoginPage = () => {
           axios.defaults.headers.common[
             "Authorization"
           ] = `Bearer ${access_token}`;
-          sessionStorage.setItem("accessToken", access_token);
-          sessionStorage.setItem("refreshToken", refresh_token);
+          localStorage.setItem("access_Token", access_token);
+          localStorage.setItem("refresh_Token", refresh_token);
           navigate("/main");
         })
         .catch(function (err) {

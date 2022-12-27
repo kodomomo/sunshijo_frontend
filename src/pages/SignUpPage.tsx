@@ -22,7 +22,7 @@ const SignUpPage = () => {
       alert("내용을 모두 기재해주세요!");
     } else {
       axios
-        .post("https://500c-211-36-142-170.jp.ngrok.io/teacher/register", {
+        .post("http://52.79.76.204:8000/teacher/register", {
           account_id: id,
           password: pwd,
           name: name,
@@ -37,7 +37,7 @@ const SignUpPage = () => {
           setWorkPlace("");
           setSubject("");
           setAuthCode("");
-          navigate("/login");
+          navigate("/");
         });
     }
   };
@@ -102,7 +102,7 @@ const SignUpPage = () => {
                   />
                 </InputDiv>
               </InputContainer>
-              <Link to="/login">로그인으로 이동</Link>
+              <Link to="/">로그인으로 이동</Link>
               <LoginBtn>
                 <button onClick={() => onClickSignUp()}>회원가입</button>
               </LoginBtn>
