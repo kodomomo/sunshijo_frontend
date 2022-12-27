@@ -1,7 +1,22 @@
-const useToDay = () => {
+const useToDay = (plusNum: number) => {
   let date = new Date();
+  console.log(date.getDay());
+  date = new Date(
+    date.setDate(
+      date.getDate() +
+        plusNum +
+        (date.getDay() == 0 ? 1 : -1 * (date.getDay() - 1))
+    )
+  );
   let datePlusFive = new Date();
-  datePlusFive = new Date(date.setDate(date.getDate() + 4));
+  datePlusFive = new Date(
+    datePlusFive.setDate(
+      datePlusFive.getDate() +
+        5 +
+        plusNum +
+        (date.getDay() == 0 ? 1 : -1 * (date.getDay() + 1))
+    )
+  );
 
   let year_one = date.getFullYear();
   let year_two = datePlusFive.getFullYear();
