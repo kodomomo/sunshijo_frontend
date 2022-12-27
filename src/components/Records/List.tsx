@@ -13,16 +13,18 @@ const List = ({ item }: propsType) => {
     new_gradations,
     new_grade,
     new_name,
+    new_teacher_name,
     origin_class,
     origin_day,
     origin_gradations,
     origin_grade,
     origin_name,
+    origin_teacher_name,
     record_id,
   } = item;
 
-  const originText = `${origin_day} ${origin_grade}학년 ${origin_class}반 ${origin_gradations}교시 ${origin_name}`;
-  const newText = `${new_day} ${new_grade}학년 ${new_class}반 ${new_gradations}교시 ${new_name}`;
+  const originText = `${origin_day} ${origin_grade}학년 ${origin_class}반 ${origin_gradations}교시 ${origin_name} (${origin_teacher_name})`;
+  const newText = `${new_day} ${new_grade}학년 ${new_class}반 ${new_gradations}교시 ${new_name} (${new_teacher_name})`;
 
   return (
     <_Wrapper>
@@ -39,6 +41,7 @@ const _Wrapper = styled.div`
   padding-left: 25px;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 7px;
   border-bottom: 1px solid #e8e8e8;
   p {
