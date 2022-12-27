@@ -6,7 +6,7 @@ export const gradeList: constantType[] = [
     text: "1학년",
   },
   {
-    number: "3",
+    number: "2",
     text: "2학년",
   },
   {
@@ -20,7 +20,7 @@ export const classList: constantType[] = [
     text: "1반",
   },
   {
-    number: "3",
+    number: "2",
     text: "2반",
   },
   {
