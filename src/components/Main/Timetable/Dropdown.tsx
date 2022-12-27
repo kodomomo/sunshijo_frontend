@@ -1,15 +1,27 @@
-import React from "react";
+import { useEffect } from "react";
+import { constantType } from "../../../interfaces/timetable";
+import useDropdown from "../../../hooks/useDropdown";
 import Arrow from "../../../assets/svgs/Arrow";
 import styled from "styled-components";
 
-const Dropdown = () => {
+interface propsType {
+  list: constantType[];
+  id: string;
+  onChange: (state: string) => void;
+}
+
+const Dropdown = ({ list, id, onChange }: propsType) => {
+  const { isShow, menuMap, select, changeShow } = useDropdown(list);
+
+  useEffect(() => {
+    onChange(select);
+  }, [select]);
+
   return (
-    <_Dropdown>
-      <span>1학년</span>
-      <Arrow direction={false} />
-      <_MenuBox>
-        <div>1학년</div>
-      </_MenuBox>
+    <_Dropdown onClick={changeShow}>
+      <span>{select + id}</span>
+      <Arrow isShow={isShow} />
+      {isShow && <_MenuBox>{menuMap}</_MenuBox>}
     </_Dropdown>
   );
 };
