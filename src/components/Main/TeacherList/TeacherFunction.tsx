@@ -1,39 +1,63 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { changeTimetableType } from "../../../interfaces/timetable";
+import { Link } from "react-router-dom";
+import postRecords from "../../../apis/postRecords";
+import getRecords from "../../../apis/getRecords";
 import useShow from "../../../hooks/useShow";
 import styled from "styled-components";
 import List from "./List";
 import Notification from "../../../assets/svgs/Notification.svg";
+import Records from "../../../assets/svgs/Records.svg";
 import Triangle from "../../../assets/svgs/Triangle.svg";
 
-const TeacherFunction = () => {
+const TeacherFunction = ({ recordsState }: any) => {
   const [requestList, setRequestList] = useState<changeTimetableType[]>([]);
   const { isShow, changeShow } = useShow();
 
+  const onClickPostRecords = () => {
+    console.log(recordsState);
+    postRecords(recordsState).then((res) => {
+      alert("변경요청하였습니다.");
+    });
+  };
+
+  useEffect(() => {
+    getRecords().then((res) => setRequestList(res.data));
+  }, []);
+
   return (
     <_Wrapper>
-      <_ButtonBox>
+      <_FunctionBox>
         <_Button background="#242424">수행평가 등록</_Button>
-        <_Button background="#FED267">시간표 변경</_Button>
-      </_ButtonBox>
-      <_Notification onClick={changeShow}>
-        {requestList.length == 0 || <span />}
-        <img src={Notification} />
-        {isShow && (
-          <_RequestList>
-            <img src={Triangle} />
-            <_ListBox>
-              {requestList.length == 0 ? (
-                <_NoRequest>요청이 없습니다</_NoRequest>
-              ) : (
-                requestList.map((item, index) => {
-                  return <List item={item} key={index} />;
-                })
-              )}
-            </_ListBox>
-          </_RequestList>
-        )}
-      </_Notification>
+        <_Button background="#FED267" onClick={onClickPostRecords}>
+          시간표 변경
+        </_Button>
+      </_FunctionBox>
+      <_FunctionBox>
+        <Link to="/records">
+          <_Notification>
+            <img src={Records} />
+          </_Notification>
+        </Link>
+        <_Notification onClick={changeShow}>
+          {requestList.length == 0 || <span />}
+          <img src={Notification} />
+          {isShow && (
+            <_RequestList>
+              <img src={Triangle} />
+              <_ListBox>
+                {requestList.length == 0 ? (
+                  <_NoRequest>요청이 없습니다</_NoRequest>
+                ) : (
+                  requestList.map((item, index) => {
+                    return <List item={item} key={index} />;
+                  })
+                )}
+              </_ListBox>
+            </_RequestList>
+          )}
+        </_Notification>
+      </_FunctionBox>
     </_Wrapper>
   );
 };
@@ -50,7 +74,7 @@ interface ButtonProps {
   background: string;
 }
 
-const _ButtonBox = styled.div`
+const _FunctionBox = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
