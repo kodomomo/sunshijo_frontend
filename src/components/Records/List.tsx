@@ -36,7 +36,7 @@ const List = ({ item }: propsType) => {
 };
 
 const _Wrapper = styled.div`
-  width: 675px;
+  width: 785px;
   height: 80px;
   padding-left: 25px;
   display: flex;
@@ -46,7 +46,7 @@ const _Wrapper = styled.div`
   border-bottom: 1px solid #e8e8e8;
   p {
     font-weight: 500;
-    font-size: 17px;
+    font-size: 16px;
     color: #7a7a7a;
   }
 `;
