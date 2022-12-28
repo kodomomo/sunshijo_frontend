@@ -27,22 +27,22 @@ const TimetableSection = ({ recordsState, setRecordsState }: propsType) => {
     endAt: toDayPlusFive,
   });
 
-  useEffect(() => {
-    if (
-      localStorage.getItem("grade") != "" &&
-      localStorage.getItem("classNum") != ""
-    ) {
-      setGetParams({
-        grade: localStorage.getItem("grade") as string,
-        classNum: localStorage.getItem("classNum") as string,
-        startAt: toDay,
-        endAt: toDayPlusFive,
-      });
-    }
-    getTimetable(getParams).then((res) => {
-      setTimetable(res.data);
-    });
-  }, []);
+  // useEffect(() => {
+  //   if (
+  //     localStorage.getItem("grade") != "" &&
+  //     localStorage.getItem("classNum") != ""
+  //   ) {
+  //     setGetParams({
+  //       grade: localStorage.getItem("grade") as string,
+  //       classNum: localStorage.getItem("classNum") as string,
+  //       startAt: toDay,
+  //       endAt: toDayPlusFive,
+  //     });
+  //   }
+  //   getTimetable(getParams).then((res) => {
+  //     setTimetable(res.data);
+  //   });
+  // }, []);
 
   useEffect(() => {
     setGetParams({
