@@ -66,12 +66,7 @@ const TeacherFunction = ({ recordsState }: any) => {
                 ) : (
                   requestList.map((item, index) => {
                     return (
-                      <List
-                        getRequestList={getRequestList}
-                        filterList={filterList}
-                        item={item}
-                        key={index}
-                      />
+                      <List filterList={filterList} item={item} key={index} />
                     );
                   })
                 )}

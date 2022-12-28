@@ -6,10 +6,9 @@ import { changeTimetableType } from "../../../interfaces/timetable";
 interface propsType {
   item: changeTimetableType;
   filterList: (item: changeTimetableType) => void;
-  getRequestList: () => void;
 }
 
-const List = ({ item, filterList, getRequestList }: propsType) => {
+const List = ({ item, filterList }: propsType) => {
   const {
     name,
     new_class,
@@ -34,7 +33,7 @@ const List = ({ item, filterList, getRequestList }: propsType) => {
       react: result,
     }).then((res) => {
       filterList(item);
-      getRequestList();
+      window.location.reload();
     });
   };
 
