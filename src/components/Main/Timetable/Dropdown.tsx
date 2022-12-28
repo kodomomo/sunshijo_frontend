@@ -8,10 +8,11 @@ interface propsType {
   list: constantType[];
   id: string;
   onChange: (state: string) => void;
+  now: string;
 }
 
-const Dropdown = ({ list, id, onChange }: propsType) => {
-  const { isShow, menuMap, select, changeShow } = useDropdown(list);
+const Dropdown = ({ list, id, onChange, now }: propsType) => {
+  const { isShow, menuMap, select, changeShow } = useDropdown(list, now);
 
   useEffect(() => {
     onChange(select);

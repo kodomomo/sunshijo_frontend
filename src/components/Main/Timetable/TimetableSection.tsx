@@ -21,8 +21,8 @@ const TimetableSection = ({ recordsState, setRecordsState }: propsType) => {
   const { toDay, toDayPlusFive } = useToDay(plusNum);
   const [timetable, setTimetable] = useState<timetableType>({});
   const [getParams, setGetParams] = useState<getParamsType>({
-    grade: "1",
-    classNum: "1",
+    grade: localStorage.getItem("grade") as string,
+    classNum: localStorage.getItem("classNum") as string,
     startAt: toDay,
     endAt: toDayPlusFive,
   });
@@ -67,11 +67,13 @@ const TimetableSection = ({ recordsState, setRecordsState }: propsType) => {
         <Dropdown
           list={gradeList}
           id="학년"
+          now={getParams.grade}
           onChange={(state) => setGetParams({ ...getParams, grade: state })}
         />
         <Dropdown
           list={classList}
           id="반"
+          now={getParams.classNum}
           onChange={(state) => setGetParams({ ...getParams, classNum: state })}
         />
       </_DropdownLayout>

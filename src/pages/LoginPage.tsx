@@ -28,13 +28,14 @@ const LoginPage = () => {
           password: pwd,
         })
         .then(function (res) {
-          console.log(res.data);
           const { access_token, refresh_token } = res.data;
           axios.defaults.headers.common[
             "Authorization"
           ] = `Bearer ${access_token}`;
           localStorage.setItem("access_token", access_token);
           localStorage.setItem("refresh_token", refresh_token);
+          localStorage.setItem("grade", "1");
+          localStorage.setItem("classNum", "1");
           navigate("/main");
         })
         .catch(function (err) {
@@ -52,7 +53,7 @@ const LoginPage = () => {
   };
 
   useEffect(() => {
-    localStorage.removeItem("grade")
+    localStorage.removeItem("grade");
     localStorage.removeItem("classNum");
   }, []);
 
