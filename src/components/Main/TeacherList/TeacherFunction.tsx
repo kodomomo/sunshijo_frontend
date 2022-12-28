@@ -25,12 +25,16 @@ const TeacherFunction = ({ recordsState }: any) => {
     localStorage.removeItem("refresh_token");
   };
 
+  const getRequestList = () => {
+    getRecords().then((res) => setRequestList(res.data));
+  };
+
   const filterList = (item: changeTimetableType) => {
     setRequestList(requestList.filter((i) => i != item));
   };
 
   useEffect(() => {
-    getRecords().then((res) => setRequestList(res.data));
+    getRequestList();
   }, []);
 
   return (
@@ -50,9 +54,9 @@ const TeacherFunction = ({ recordsState }: any) => {
             <img src={Records} />
           </_Notification>
         </Link>
-        <_Notification onClick={changeShow}>
+        <_Notification>
           {requestList.length == 0 || <span />}
-          <img src={Notification} />
+          <img src={Notification} onClick={changeShow} />
           {isShow && (
             <_RequestList>
               <img src={Triangle} />
@@ -62,7 +66,12 @@ const TeacherFunction = ({ recordsState }: any) => {
                 ) : (
                   requestList.map((item, index) => {
                     return (
-                      <List filterList={filterList} item={item} key={index} />
+                      <List
+                        getRequestList={getRequestList}
+                        filterList={filterList}
+                        item={item}
+                        key={index}
+                      />
                     );
                   })
                 )}
