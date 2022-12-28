@@ -21,17 +21,24 @@ const TimetableSection = ({ recordsState, setRecordsState }: propsType) => {
   const { toDay, toDayPlusFive } = useToDay(plusNum);
   const [timetable, setTimetable] = useState<timetableType>({});
   const [getParams, setGetParams] = useState<getParamsType>({
-    grade: (localStorage.getItem("grade") != ""
-      ? localStorage.getItem("grade")
-      : "1") as string,
-    classNum:(localStorage.getItem("classNum") != ""
-    ? localStorage.getItem("classNum")
-    : "1") as string,
+    grade: "1",
+    classNum: "1",
     startAt: toDay,
     endAt: toDayPlusFive,
   });
 
   useEffect(() => {
+    if (
+      localStorage.getItem("grade") != "" &&
+      localStorage.getItem("classNum") != ""
+    ) {
+      setGetParams({
+        grade: localStorage.getItem("grade") as string,
+        classNum: localStorage.getItem("classNum") as string,
+        startAt: toDay,
+        endAt: toDayPlusFive,
+      });
+    }
     getTimetable(getParams).then((res) => {
       setTimetable(res.data);
     });
