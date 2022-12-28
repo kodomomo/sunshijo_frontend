@@ -1,6 +1,6 @@
 //import { instance } from "../apis/axios";
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import LoginImg from "../assets/imgs/Login.png";
@@ -50,6 +50,11 @@ const LoginPage = () => {
     setId("");
     setPwd("");
   };
+
+  useEffect(() => {
+    localStorage.removeItem("grade")
+    localStorage.removeItem("classNum");
+  }, []);
 
   return (
     <PageBackground>
