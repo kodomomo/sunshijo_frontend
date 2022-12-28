@@ -37,7 +37,7 @@ const List = ({ item }: propsType) => {
 
 const _Wrapper = styled.div`
   width: 785px;
-  height: 80px;
+  min-height: 65px;
   padding-left: 25px;
   display: flex;
   align-items: center;
