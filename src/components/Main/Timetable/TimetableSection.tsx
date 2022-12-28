@@ -21,8 +21,12 @@ const TimetableSection = ({ recordsState, setRecordsState }: propsType) => {
   const { toDay, toDayPlusFive } = useToDay(plusNum);
   const [timetable, setTimetable] = useState<timetableType>({});
   const [getParams, setGetParams] = useState<getParamsType>({
-    grade: localStorage.getItem("grade") || "1",
-    classNum: localStorage.getItem("classNum") || "1",
+    grade: (localStorage.getItem("grade") != ""
+      ? localStorage.getItem("grade")
+      : "1") as string,
+    classNum:(localStorage.getItem("classNum") != ""
+    ? localStorage.getItem("classNum")
+    : "1") as string,
     startAt: toDay,
     endAt: toDayPlusFive,
   });
