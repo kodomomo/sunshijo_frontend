@@ -20,6 +20,11 @@ const TeacherFunction = ({ recordsState }: any) => {
     });
   };
 
+  const logout = () => {
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("refresh_token");
+  };
+
   const filterList = (item: changeTimetableType) => {
     setRequestList(requestList.filter((i) => i != item));
   };
@@ -37,6 +42,9 @@ const TeacherFunction = ({ recordsState }: any) => {
         </_Button>
       </_FunctionBox>
       <_FunctionBox>
+        <Link to="/">
+          <_Logout onClick={logout}>로그아웃</_Logout>
+        </Link>
         <Link to="/records">
           <_Notification>
             <img src={Records} />
@@ -83,6 +91,18 @@ const _FunctionBox = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
+`;
+
+const _Logout = styled.p`
+  transition: all 0.3s;
+  font-weight: 600;
+  font-size: 16px;
+  text-decoration-line: underline;
+  color: #242424;
+
+  &:hover {
+    color: #343434;
+  }
 `;
 
 const _Button = styled.button<ButtonProps>`
