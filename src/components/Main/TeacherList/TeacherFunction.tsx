@@ -96,9 +96,10 @@ const _FunctionBox = styled.div`
 const _Logout = styled.p`
   transition: all 0.3s;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 18px;
   text-decoration-line: underline;
   color: #242424;
+  margin-right: 10px;
 
   &:hover {
     color: #343434;
